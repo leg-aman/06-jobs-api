@@ -26,13 +26,15 @@ app.use(
     max: 100, // limit each IP to 100 requests per windowMs
   })
 );
-
+app.use(express.static('public'))
 // routers
 const authRouter = require("./routes/auth");
 const jobsRouter = require("./routes/jobs");
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", authenticateUser, jobsRouter);
+
+
 
 // error handler
 const notFoundMiddleware = require("./middleware/not-found");
